@@ -1,18 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-require("dotenv").config();
+const app = require("./app");
+const env = require("./config/env");
 
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.get("/", (req, res) => {
-	res.json({ message: "API resto-stock-mvp OK" });
-});
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-	console.log(`Backend lancé sur http://localhost:${PORT}`);
+app.listen(env.port, () => {
+	console.log(`Backend lancé sur http://localhost:${env.port}`);
 });
