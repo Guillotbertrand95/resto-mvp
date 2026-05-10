@@ -1,26 +1,29 @@
-const prisma = require("../../prisma/client");
+const productRepository = require("./product.repository");
 
-async function getAllProducts() {
-	return prisma.product.findMany({
-		orderBy: {
-			createdAt: "desc",
-		},
-	});
-}
+const getProducts = async () => {
+	return productRepository.getAllProducts();
+};
 
-async function createProduct(data) {
-	return prisma.product.create({
-		data: {
-			name: data.name,
-			unit: data.unit,
-			currentStock: data.currentStock || 0,
-			alertThreshold: data.alertThreshold || 0,
-			averagePrice: data.averagePrice || null,
-		},
-	});
-}
+const createProduct = async (data) => {
+	if (!data.name) {
+		throw new Error("Le nom du produit est obligatoire");
+	}
+
+	if (!data.unit) {
+		throw new Error("L'unité du produit est obligatoire");
+	}
+
+	const productData = {
+		name: data.name,
+		unit: data.unit,
+		currentStock: Number(data.currentStock) || 0,
+		alertThreshold: Number(data.alertThreshold) || 0,
+	};
+
+	return productRepository.createProduct(productData);
+};
 
 module.exports = {
-	getAllProducts,
+	getProducts,
 	createProduct,
 };

@@ -1,35 +1,24 @@
 const productService = require("./product.service");
-const { validateCreateProduct } = require("./product.validators");
 
-async function getProducts(req, res) {
+const getProducts = async (req, res) => {
 	try {
-		const products = await productService.getAllProducts();
+		const products = await productService.getProducts();
 		res.json(products);
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({
-			error: "Erreur lors de la récupération des produits",
-		});
+		res.status(500).json({ error: "Erreur serveur" });
 	}
-}
+};
 
-async function createProduct(req, res) {
+const createProduct = async (req, res) => {
 	try {
-		const validationError = validateCreateProduct(req.body);
-
-		if (validationError) {
-			return res.status(400).json({ error: validationError });
-		}
-
 		const product = await productService.createProduct(req.body);
 		res.status(201).json(product);
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({
-			error: "Erreur lors de la création du produit",
-		});
+		res.status(400).json({ error: error.message });
 	}
-}
+};
 
 module.exports = {
 	getProducts,
