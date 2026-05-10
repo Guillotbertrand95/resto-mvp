@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const productRoutes = require("./modules/products/product.routes");
-
+const stockMovementRoutes = require("./modules/stock-movements/stockMovement.routes");
 const app = express();
 
 app.use(cors());
@@ -13,5 +13,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", productRoutes);
+app.use("/stock-movements", stockMovementRoutes);
 
 module.exports = app;
