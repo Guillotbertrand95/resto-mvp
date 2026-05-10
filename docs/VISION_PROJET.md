@@ -1,8 +1,3 @@
----
-
-# 📄 `docs/VISION_PROJET.md`
-
-```md
 # Vision du projet
 
 Application SaaS pour restaurateurs.
@@ -31,8 +26,8 @@ Créer un outil intelligent de pilotage :
 ## 💡 Idée clé
 
 Le restaurateur ne doit plus réfléchir en “produit brut” mais en :
-➡️ portions
-➡️ coût réel
+➡️ portions  
+➡️ coût réel  
 ➡️ disponibilité réelle
 
 ## 🌍 Évolution
@@ -43,4 +38,3 @@ Le système doit pouvoir s’adapter :
 - bars
 - commerces alimentaires
 - autres business avec stock
-```
