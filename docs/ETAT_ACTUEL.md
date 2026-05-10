@@ -10,28 +10,67 @@
 
 ## ✅ Ce qui fonctionne
 
-- Backend initialisé
-- Frontend initialisé
-- Prisma configuré
-- Connexion à Supabase OK
-- Modèle Produit créé
-- Endpoint API pour récupérer les produits
-- Le frontend affiche les produits
+### Backend
+
+- Backend structuré (app / server / modules)
+- Nodemon configuré (reload automatique)
+- Architecture modulaire mise en place :
+    - routes
+    - controllers
+    - services
+    - repositories
+
+### Produits
+
+- Modèle Product créé
+- Migration Prisma OK
+- Endpoint :
+    - GET /products
+    - POST /products
+- Validation des données en place
+
+### Stock
+
+- Modèle StockMovement créé
+- Relation Product ↔ StockMovement OK
+- Migration Prisma OK
+
+- Module stock-movements créé :
+    - repository
+    - service
+    - controller
+    - routes
+
+- Endpoint :
+    - POST /stock-movements
+
+### Logique métier
+
+- Entrée de stock (IN) fonctionnelle
+- Sortie de stock (OUT) fonctionnelle
+- Mise à jour automatique du currentStock
+- Vérification stock insuffisant (sécurité OK)
 
 ## ⚠️ Problèmes identifiés
 
-- Le backend ne se recharge pas automatiquement (nodemon à mettre en place)
+- Aucun bug bloquant actuellement
 
 ## 🎯 Prochaine étape
 
-- Mettre en place nodemon
-- Structurer le backend (routes / controllers / services / repositories)
-- Ajouter création de produit (POST)
+- Améliorer la réponse API (retourner produit + mouvement)
+- Ajouter GET /stock-movements (historique)
+- Calcul du prix moyen (averagePrice)
+- Structurer encore la logique métier (services)
 
 ## 🧠 À garder en tête
 
-Toujours garder une architecture propre pour :
+- Ne jamais modifier directement le stock
+- Toujours passer par les mouvements de stock
+- Garder une architecture propre et modulaire
+- Penser en logique métier avant technique
 
-- éviter le code spaghetti
-- faciliter la migration TypeScript
-- préparer la scalabilité SaaS
+## ❓ Questions en cours
+
+- Comment calculer le prix moyen efficacement ?
+- Comment gérer les portions (future feature clé) ?
+- Faut-il historiser plus de données (fournisseurs, achats) ?
