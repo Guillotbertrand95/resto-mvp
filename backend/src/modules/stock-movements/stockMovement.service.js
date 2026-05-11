@@ -30,26 +30,73 @@ const createMovement = async (data) => {
 		throw new Error("Stock insuffisant");
 	}
 
-	const newStock =
-		type === "IN" ? product.currentStock + qty : product.currentStock - qty;
+	const oldStock = Number(product.currentStock);
+	const oldAveragePrice = Number(product.averagePrice || 0);
 
-	const movement = await stockMovementRepository.createMovement({
-		productId,
-		type,
-		quantity: qty,
-		unitPrice: unitPrice ? Number(unitPrice) : null,
+	const newStock = type === "IN" ? oldStock + qty : oldStock - qty;
+
+	let newAveragePrice = product.averagePrice;
+
+	if (type === "IN") {
+		const price = Number(unitPrice);
+
+		if (isNaN(price) || price <= 0) {
+			throw new Error(
+				"Le prix unitaire est obligatoire pour une entrée de stock",
+			);
+		}
+
+		if (product.averagePrice === null || oldStock === 0) {
+			newAveragePrice = price;
+		} else {
+			newAveragePrice =
+				(oldStock * oldAveragePrice + qty * price) / newStock;
+		}
+	}
+
+	const result = await prisma.$transaction(async (tx) => {
+		const movementUnitPrice =
+			type === "IN" ? Number(unitPrice) : product.averagePrice;
+
+		const movement = await tx.stockMovement.create({
+			data: {
+				productId,
+				type,
+				quantity: qty,
+				unitPrice: movementUnitPrice,
+			},
+		});
+
+		const updatedProduct = await tx.product.update({
+			where: { id: productId },
+			data: {
+				currentStock: newStock,
+				averagePrice: newAveragePrice,
+			},
+		});
+
+		return {
+			movement: {
+				...movement,
+				totalValue: movement.quantity * movement.unitPrice,
+			},
+			product: updatedProduct,
+		};
 	});
 
-	await prisma.product.update({
-		where: { id: productId },
-		data: {
-			currentStock: newStock,
-		},
-	});
-
-	return movement;
+	return result;
 };
+async function getAllStockMovements() {
+	const movements = await stockMovementRepository.findAll();
 
+	return movements.map((movement) => ({
+		...movement,
+		totalValue: movement.unitPrice
+			? movement.quantity * movement.unitPrice
+			: null,
+	}));
+}
 module.exports = {
 	createMovement,
+	getAllStockMovements,
 };
