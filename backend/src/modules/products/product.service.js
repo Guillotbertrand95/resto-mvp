@@ -18,6 +18,7 @@ const createProduct = async (data) => {
 		unit: data.unit,
 		currentStock: Number(data.currentStock) || 0,
 		alertThreshold: Number(data.alertThreshold) || 0,
+		category: data.category || "Non classé",
 	};
 
 	return productRepository.createProduct(productData);
