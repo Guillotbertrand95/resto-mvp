@@ -6,6 +6,7 @@ import "../styles/Products.css";
 function Products() {
 	const [products, setProducts] = useState([]);
 	const [error, setError] = useState("");
+	const [selectedCategory, setSelectedCategory] = useState("all");
 
 	async function loadProducts() {
 		try {
@@ -25,6 +26,13 @@ function Products() {
 		await loadProducts();
 	}
 
+	const categories = ["all", ...new Set(products.map((p) => p.category))];
+
+	const filteredProducts =
+		selectedCategory === "all"
+			? products
+			: products.filter((p) => p.category === selectedCategory);
+
 	if (error) {
 		return <p>{error}</p>;
 	}
@@ -35,6 +43,21 @@ function Products() {
 
 			<ProductForm onProductCreated={handleProductCreated} />
 
+			<div className="products__filters">
+				<label>Filtrer par catégorie :</label>
+
+				<select
+					value={selectedCategory}
+					onChange={(e) => setSelectedCategory(e.target.value)}
+				>
+					{categories.map((cat) => (
+						<option key={cat} value={cat}>
+							{cat === "all" ? "Toutes les catégories" : cat}
+						</option>
+					))}
+				</select>
+			</div>
+
 			<table className="products__table">
 				<thead>
 					<tr>
@@ -42,17 +65,32 @@ function Products() {
 						<th>Unité</th>
 						<th>Stock actuel</th>
 						<th>Seuil d’alerte</th>
+						<th>Statut</th>
+						<th>Catégorie</th>
 						<th>Prix moyen</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					{products.map((product) => (
+					{filteredProducts.map((product) => (
 						<tr key={product.id}>
 							<td>{product.name}</td>
 							<td>{product.unit}</td>
 							<td>{product.currentStock}</td>
 							<td>{product.alertThreshold}</td>
+							<td>
+								{product.currentStock <=
+								product.alertThreshold ? (
+									<span className="products__badge products__badge--alert">
+										Stock bas
+									</span>
+								) : (
+									<span className="products__badge products__badge--ok">
+										OK
+									</span>
+								)}
+							</td>
+							<td>{product.category}</td>
 							<td>
 								{product.averagePrice !== null
 									? `${product.averagePrice.toFixed(2)} €`
