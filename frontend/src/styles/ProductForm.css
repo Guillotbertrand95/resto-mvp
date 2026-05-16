@@ -1,0 +1,33 @@
+.product-form {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	margin-top: 24px;
+	padding: 16px;
+	background-color: #ffffff;
+	border-radius: 12px;
+}
+
+.product-form h2 {
+	margin-right: 12px;
+	font-size: 18px;
+}
+
+.product-form input {
+	padding: 10px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+}
+
+.product-form button {
+	padding: 10px 16px;
+	border: none;
+	border-radius: 8px;
+	background-color: #2563eb;
+	color: white;
+	cursor: pointer;
+}
+
+.product-form__error {
+	color: red;
+}

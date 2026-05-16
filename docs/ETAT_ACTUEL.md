@@ -6,162 +6,104 @@
 - Backend : Node.js / Express
 - Base de données : Supabase (PostgreSQL)
 - ORM : Prisma
-- Langage : JavaScript (TypeScript prévu plus tard)
+- Langage : JavaScript
 
 ---
 
-## ✅ Ce qui fonctionne
+## ✅ Backend
 
-### Backend
-
-- Backend structuré (app / server / modules)
-- Nodemon configuré (reload automatique)
-- Architecture modulaire mise en place :
+- Architecture modulaire :
     - routes
     - controllers
     - services
     - repositories
 
----
-
-### Produits
-
-- Modèle Product créé
-- Migration Prisma OK
-- Endpoints :
-    - GET /products
-    - POST /products
-- Validation des données en place
+- Transactions Prisma en place
+- Logique métier solide et centralisée
 
 ---
 
-### Stock
+## 📦 Produits
 
-- Modèle StockMovement créé
-- Relation Product ↔ StockMovement OK
-- Migration Prisma OK
+- Création de produits (POST /products)
+- Liste des produits (GET /products)
 
-- Module stock-movements structuré :
-    - repository
-    - service
-    - controller
-    - routes
+Champs :
 
-- Endpoints :
-    - POST /stock-movements
-    - GET /stock-movements (historique)
+- name
+- unit
+- currentStock
+- alertThreshold
+- averagePrice
 
 ---
 
-### 💰 Valorisation du stock
+## 🔄 Mouvements de stock
 
-- Calcul du prix moyen pondéré (`averagePrice`)
-- Mise à jour automatique sur les entrées de stock (IN)
-- Conservation du prix moyen lors des sorties (OUT)
-- Gestion des cas initiaux (stock 0 / averagePrice null)
-- Calcul en précision complète (pas d’arrondi en base)
+- Création de mouvements (POST /stock-movements)
+- Historique des mouvements (GET /stock-movements)
 
----
+Types :
 
-### 📊 Valorisation des mouvements
-
-- Chaque mouvement contient :
-    - quantity
-    - unitPrice
-    - totalValue (calculé côté API)
-
-- Les sorties de stock (OUT) sont valorisées avec le prix moyen au moment de la sortie
-- Historique enrichi avec valeur financière
+- IN (entrée)
+- OUT (sortie)
 
 ---
 
-### 🔐 Transactions (robustesse)
-
-- Utilisation de transactions Prisma (`$transaction`)
-- Garantie de cohérence :
-    - création mouvement
-    - mise à jour stock
-- Évite les incohérences en cas d’erreur
-
----
-
-### 📈 Dashboard
-
-- Module `dashboard` créé :
-    - service
-    - controller
-    - routes
-
-- Endpoint :
-    - GET /dashboard/stats
-
-- Données retournées :
-    - totalInValue (valeur des entrées)
-    - totalOutValue (valeur des sorties)
-    - currentStockValue (valeur actuelle du stock)
-
----
-
-### 🧠 Logique métier
-
-- Entrée de stock (IN) fonctionnelle
-- Sortie de stock (OUT) fonctionnelle
-- Mise à jour automatique du `currentStock`
-- Vérification stock insuffisant (sécurité OK)
+## 💰 Logique financière
 
 - Calcul du prix moyen pondéré
-- Valorisation des sorties de stock (coût réel consommé)
-- Calcul de la valeur des mouvements (`totalValue`)
+- Valorisation des mouvements
+- totalValue calculé côté backend
+- Pas d’arrondi en base
 
 ---
 
-## ⚠️ Problèmes identifiés
+## 📊 Dashboard
 
-- Données historiques anciennes non valorisées (`unitPrice = null`)
-- Légère dérive possible si arrondi côté backend (corrigé → plus d’arrondi en base)
+Endpoint :
 
----
+- GET /dashboard/stats
 
-## 🎯 Prochaines étapes
+Données :
 
-- Connecter le dashboard au frontend (cartes KPI)
-- Filtrage des mouvements (date, produit)
-- Gestion des portions (feature clé du produit)
-- Calcul des marges (vente vs coût réel)
-- Gestion des fournisseurs (prix d’achat, historique)
-- Migration progressive vers TypeScript
+- totalInValue
+- totalOutValue
+- currentStockValue
 
 ---
 
-## 🧠 À garder en tête
+## 🎨 Frontend
 
-- Ne jamais modifier directement le stock
-- Toujours passer par les mouvements de stock
-- Stocker la bonne information au bon moment (prix au moment du mouvement)
-- Calculer avec précision en backend, afficher arrondi en frontend
-- Garder une architecture propre et modulaire
-- Penser en logique métier avant technique
+### Pages
 
----
+- Dashboard
+- Produits
+- Mouvements de stock
 
-## ❓ Questions en cours
+### Fonctionnalités
 
-- Comment modéliser efficacement les portions ?
-- Comment relier ventes ↔ sorties de stock ?
-- Comment gérer les fournisseurs et l’évolution des prix ?
-- Faut-il historiser davantage (factures, achats détaillés) ?
+- Affichage des KPI
+- Tableau des produits
+- Tableau des mouvements
+- Création de produit
+- Création de mouvement (IN / OUT dynamique)
 
 ---
 
-## 🚀 Vision
+## ⚠️ Points à améliorer
 
-- Passer d’un simple outil de stock à un système de **pilotage économique**
-- Permettre au restaurateur de raisonner en :
-    - coût réel
-    - portions
-    - marge
+- Pas encore d’alertes visuelles stock
+- Pas de filtres sur les mouvements
+- Pas de feedback utilisateur (succès / erreur)
+- Pas d’authentification
 
-- Base pour :
-    - automatisation
-    - IA
-    - recommandations d’achat
+---
+
+## 🎯 Niveau actuel
+
+👉 MVP fonctionnel
+
+- données cohérentes
+- logique métier solide
+- premières interactions utilisateur

@@ -1,46 +1,30 @@
-# Décisions techniques
+## 🆕 Décisions frontend récentes
 
-## 🏗️ Architecture backend
+### Architecture
 
-Structure souhaitée :
+- séparation pages / components / services
+- layout global avec navigation (React Router)
 
-- routes → reçoit la requête HTTP
-- controllers → gère la réponse HTTP
-- services → logique métier
-- repositories → accès base de données
-- prisma → ORM PostgreSQL
+### API
 
-## 🔁 Principe
+- centralisation via apiFetch
+- services dédiés par domaine (product, stockMovement, dashboard)
 
-Séparer les responsabilités :
+### Formulaires
 
-Exemple :
+- gestion locale avec useState
+- appel API via service
+- rechargement des données après mutation
 
-- route : "/products"
-- controller : getProducts()
-- service : logique métier
-- repository : Prisma query
+### UX
 
-## 🧪 Choix actuels
+- formulaire dynamique: - IN → avec prix - OUT → sans prix
 
-- JavaScript pour aller vite
-- Structure prête pour TypeScript plus tard
+---
 
-## 🔮 Évolution prévue
+## 🧠 Règle confirmée
 
-- migration progressive vers TypeScript
-- ajout de tests
-- ajout d’authentification
-- intégration n8n
-- intégration IA
+👉 Le backend est la source de vérité
 
-## ⚠️ Règle importante
-
-Toujours privilégier :
-➡️ code simple
-➡️ lisibilité
-➡️ séparation des responsabilités
-
-plutôt que :
-❌ optimisation prématurée
-❌ complexité inutile
+- calculs côté backend
+- frontend = affichage + interaction

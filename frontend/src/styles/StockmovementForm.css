@@ -1,0 +1,36 @@
+.stock-movement-form {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	margin-top: 24px;
+	padding: 16px;
+	background-color: #ffffff;
+	border-radius: 12px;
+	flex-wrap: wrap;
+}
+
+.stock-movement-form h2 {
+	width: 100%;
+	margin: 0 0 8px;
+	font-size: 18px;
+}
+
+.stock-movement-form input,
+.stock-movement-form select {
+	padding: 10px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+}
+
+.stock-movement-form button {
+	padding: 10px 16px;
+	border: none;
+	border-radius: 8px;
+	background-color: #2563eb;
+	color: white;
+	cursor: pointer;
+}
+
+.stock-movement-form__error {
+	color: red;
+}

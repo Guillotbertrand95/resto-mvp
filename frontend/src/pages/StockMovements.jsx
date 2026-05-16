@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
-import { getStockMovements } from "../services/stockMovementService";
+import StockMovementForm from "../components/StockMovementForm";
+import {
+	createStockMovement,
+	getStockMovements,
+} from "../services/stockMovementService";
 import "../styles/StockMovements.css";
 
 function StockMovements() {
 	const [movements, setMovements] = useState([]);
 	const [error, setError] = useState("");
 
-	useEffect(() => {
-		async function loadMovements() {
-			try {
-				const data = await getStockMovements();
-				setMovements(data);
-			} catch (err) {
-				setError("Impossible de charger les mouvements de stock");
-			}
+	async function loadMovements() {
+		try {
+			const data = await getStockMovements();
+			setMovements(data);
+		} catch (err) {
+			setError("Impossible de charger les mouvements de stock");
 		}
+	}
 
+	useEffect(() => {
 		loadMovements();
 	}, []);
+
+	async function handleMovementCreated(movement) {
+		await createStockMovement(movement);
+		await loadMovements();
+	}
 
 	if (error) {
 		return <p>{error}</p>;
@@ -25,7 +34,9 @@ function StockMovements() {
 
 	return (
 		<section className="stock-movements">
-			<h2>Historique des mouvements</h2>
+			<h1>Mouvements de stock</h1>
+
+			<StockMovementForm onMovementCreated={handleMovementCreated} />
 
 			<table className="stock-movements__table">
 				<thead>
@@ -50,8 +61,16 @@ function StockMovements() {
 							<td>{movement.product?.name}</td>
 							<td>{movement.type}</td>
 							<td>{movement.quantity}</td>
-							<td>{movement.unitPrice?.toFixed(2)} €</td>
-							<td>{movement.totalValue?.toFixed(2)} €</td>
+							<td>
+								{movement.unitPrice !== null
+									? `${movement.unitPrice.toFixed(2)} €`
+									: "-"}
+							</td>
+							<td>
+								{movement.totalValue !== null
+									? `${movement.totalValue.toFixed(2)} €`
+									: "-"}
+							</td>
 						</tr>
 					))}
 				</tbody>

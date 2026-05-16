@@ -1,40 +1,64 @@
 # Vision du projet
 
-Application SaaS pour restaurateurs.
+## 🎯 MVP actuel
 
-## 🎯 MVP
+Créer un outil simple pour :
 
-Construire une base simple :
+- gérer les produits
+- gérer les mouvements de stock
+- visualiser la valeur du stock
 
-- produits
-- stock
-- mouvements de stock
-
-## 🚀 Vision long terme
-
-Créer un outil intelligent de pilotage :
-
-- gestion des stocks en temps réel
-- gestion des fournisseurs
-- suivi des prix d’achat
-- gestion des recettes (portion intelligente)
-- calcul des marges
-- alertes de réapprovisionnement
-- automatisation via n8n
-- rapports générés par IA
+---
 
 ## 💡 Idée clé
 
-Le restaurateur ne doit plus réfléchir en “produit brut” mais en :
-➡️ portions  
+Le restaurateur ne doit plus penser en :
+
+❌ quantité  
+Mais en :  
+➡️ valeur  
 ➡️ coût réel  
-➡️ disponibilité réelle
+➡️ consommation
 
-## 🌍 Évolution
+---
 
-Le système doit pouvoir s’adapter :
+## 🚀 Objectif
 
-- restaurants
-- bars
-- commerces alimentaires
-- autres business avec stock
+Passer d’un outil de stock à un :
+
+👉 système de pilotage économique
+
+---
+
+## 🔥 Prochaine évolution
+
+### Court terme
+
+- alertes stock
+- filtres mouvements
+- amélioration dashboard
+
+### Moyen terme
+
+- gestion des portions
+- calcul du coût par portion
+- calcul des marges
+
+### Long terme
+
+- recommandations automatiques
+- optimisation des achats
+- automatisation (n8n)
+- IA (analyse des données)
+
+---
+
+## 🧠 Positionnement
+
+Ce n’est PAS :
+
+- un outil de stock classique
+
+C’est :
+
+👉 un outil de décision pour restaurateur
