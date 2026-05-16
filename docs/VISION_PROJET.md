@@ -2,63 +2,64 @@
 
 ## 🎯 MVP actuel
 
-Créer un outil simple pour :
-
-- gérer les produits
-- gérer les mouvements de stock
-- visualiser la valeur du stock
+- gestion produits
+- gestion stock
+- visualisation valeur
+- filtrage par catégorie
 
 ---
 
 ## 💡 Idée clé
 
-Le restaurateur ne doit plus penser en :
+Le restaurateur doit raisonner en :
 
-❌ quantité  
-Mais en :  
-➡️ valeur  
-➡️ coût réel  
-➡️ consommation
+- coût réel
+- consommation
+- valeur stock
 
 ---
 
-## 🚀 Objectif
+## 🧠 Nouvelle dimension
 
-Passer d’un outil de stock à un :
+Ajout de la notion de :
 
-👉 système de pilotage économique
+👉 organisation métier (catégories)
+
+Exemples :
+
+- viande
+- poisson
+- crémerie
+- hygiène
 
 ---
 
-## 🔥 Prochaine évolution
+## 🚀 Prochaine évolution
 
 ### Court terme
 
-- alertes stock
-- filtres mouvements
-- amélioration dashboard
+- dashboard enrichi
+- alertes globales
+- filtres avancés
 
 ### Moyen terme
 
 - gestion des portions
-- calcul du coût par portion
-- calcul des marges
+- calcul coût portion
+- calcul marges
 
 ### Long terme
 
 - recommandations automatiques
-- optimisation des achats
 - automatisation (n8n)
-- IA (analyse des données)
+- IA
 
 ---
 
-## 🧠 Positionnement
+## 🎯 Objectif final
 
-Ce n’est PAS :
+Créer un outil qui permet :
 
-- un outil de stock classique
+👉 de prendre des décisions rapidement
 
-C’est :
-
-👉 un outil de décision pour restaurateur
+et non juste gérer du stock

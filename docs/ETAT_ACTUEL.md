@@ -12,21 +12,16 @@
 
 ## ✅ Backend
 
-- Architecture modulaire :
-    - routes
-    - controllers
-    - services
-    - repositories
-
+- Architecture modulaire (routes / controllers / services / repositories)
 - Transactions Prisma en place
-- Logique métier solide et centralisée
+- Logique métier centralisée
 
 ---
 
 ## 📦 Produits
 
-- Création de produits (POST /products)
-- Liste des produits (GET /products)
+- Création produit (POST /products)
+- Liste produits (GET /products)
 
 Champs :
 
@@ -35,13 +30,14 @@ Champs :
 - currentStock
 - alertThreshold
 - averagePrice
+- category
 
 ---
 
 ## 🔄 Mouvements de stock
 
-- Création de mouvements (POST /stock-movements)
-- Historique des mouvements (GET /stock-movements)
+- Création (POST /stock-movements)
+- Historique (GET /stock-movements)
 
 Types :
 
@@ -52,20 +48,14 @@ Types :
 
 ## 💰 Logique financière
 
-- Calcul du prix moyen pondéré
+- Prix moyen pondéré
 - Valorisation des mouvements
 - totalValue calculé côté backend
-- Pas d’arrondi en base
+- précision complète (pas d’arrondi en base)
 
 ---
 
 ## 📊 Dashboard
-
-Endpoint :
-
-- GET /dashboard/stats
-
-Données :
 
 - totalInValue
 - totalOutValue
@@ -79,31 +69,30 @@ Données :
 
 - Dashboard
 - Produits
-- Mouvements de stock
+- Mouvements
 
 ### Fonctionnalités
 
-- Affichage des KPI
-- Tableau des produits
-- Tableau des mouvements
-- Création de produit
-- Création de mouvement (IN / OUT dynamique)
+- Affichage KPI
+- Tableau produits
+- Tableau mouvements
+- Création produit
+- Création mouvements (IN / OUT dynamique)
+- Filtre par catégorie
+- Alerte stock faible (visuelle)
 
 ---
 
-## ⚠️ Points à améliorer
+## 🆕 Améliorations récentes
 
-- Pas encore d’alertes visuelles stock
-- Pas de filtres sur les mouvements
-- Pas de feedback utilisateur (succès / erreur)
-- Pas d’authentification
+- Ajout catégorie produit
+- Filtrage dynamique par catégorie
+- Passage quantity en Float (support décimales)
+- Ajout unités dans affichage
+- Badge "Stock bas"
 
 ---
 
 ## 🎯 Niveau actuel
 
-👉 MVP fonctionnel
-
-- données cohérentes
-- logique métier solide
-- premières interactions utilisateur
+👉 MVP solide et exploitable
