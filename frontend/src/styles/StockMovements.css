@@ -1,0 +1,23 @@
+.stock-movements {
+	margin-top: 32px;
+}
+
+.stock-movements__table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #ffffff;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.stock-movements__table th,
+.stock-movements__table td {
+	padding: 14px;
+	text-align: left;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.stock-movements__table th {
+	background-color: #f0f0f0;
+	font-weight: 600;
+}
