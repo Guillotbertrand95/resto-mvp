@@ -7,6 +7,7 @@ function ProductForm({ onProductCreated }) {
 		unit: "",
 		alertThreshold: "",
 		category: "",
+		portionQuantity: "",
 	});
 
 	const [error, setError] = useState("");
@@ -31,6 +32,9 @@ function ProductForm({ onProductCreated }) {
 				unit: formData.unit,
 				alertThreshold: Number(formData.alertThreshold),
 				category: formData.category,
+				portionQuantity: formData.portionQuantity
+					? Number(formData.portionQuantity)
+					: null,
 			});
 
 			setFormData({
@@ -38,6 +42,7 @@ function ProductForm({ onProductCreated }) {
 				unit: "",
 				alertThreshold: "",
 				category: "",
+				portionQuantity: "",
 			});
 		} catch (err) {
 			setError("Impossible de créer le produit");
@@ -65,16 +70,28 @@ function ProductForm({ onProductCreated }) {
 			<input
 				name="alertThreshold"
 				type="number"
+				step="0.001"
 				placeholder="Seuil d’alerte"
 				value={formData.alertThreshold}
 				onChange={handleChange}
 			/>
+
 			<input
 				name="category"
 				placeholder="Catégorie (ex: viande, crémerie...)"
 				value={formData.category}
 				onChange={handleChange}
 			/>
+
+			<input
+				name="portionQuantity"
+				type="number"
+				step="0.001"
+				placeholder="Portion ex: 0.18 kg"
+				value={formData.portionQuantity}
+				onChange={handleChange}
+			/>
+
 			<button type="submit">Ajouter</button>
 
 			{error && <p className="product-form__error">{error}</p>}

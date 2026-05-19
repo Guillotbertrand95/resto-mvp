@@ -68,6 +68,9 @@ function Products() {
 						<th>Statut</th>
 						<th>Catégorie</th>
 						<th>Prix moyen</th>
+						<th>Portion</th>
+						<th>Portions dispo</th>
+						<th>Coût portion</th>
 					</tr>
 				</thead>
 
@@ -75,9 +78,13 @@ function Products() {
 					{filteredProducts.map((product) => (
 						<tr key={product.id}>
 							<td>{product.name}</td>
+
 							<td>{product.unit}</td>
+
 							<td>{product.currentStock}</td>
+
 							<td>{product.alertThreshold}</td>
+
 							<td>
 								{product.currentStock <=
 								product.alertThreshold ? (
@@ -90,10 +97,30 @@ function Products() {
 									</span>
 								)}
 							</td>
+
 							<td>{product.category}</td>
+
 							<td>
 								{product.averagePrice !== null
 									? `${product.averagePrice.toFixed(2)} €`
+									: "-"}
+							</td>
+
+							<td>
+								{product.portionQuantity
+									? `${product.portionQuantity} ${product.unit}`
+									: "-"}
+							</td>
+
+							<td>
+								{product.availablePortions
+									? Math.floor(product.availablePortions)
+									: "-"}
+							</td>
+
+							<td>
+								{product.portionCost
+									? `${product.portionCost.toFixed(2)} €`
 									: "-"}
 							</td>
 						</tr>

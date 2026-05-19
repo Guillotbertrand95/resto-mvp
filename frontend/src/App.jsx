@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import StockMovements from "./pages/StockMovements";
 
+import "./styles/global.css";
 function App() {
 	return (
 		<BrowserRouter>

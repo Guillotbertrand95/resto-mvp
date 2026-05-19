@@ -1,35 +1,38 @@
 .navigation {
-	width: 240px;
+	width: var(--sidebar-width);
 	min-height: 100vh;
-	padding: 24px;
-	background-color: #111827;
+	padding: 24px 16px;
+	background: #111827;
 	color: white;
+	flex-shrink: 0;
 }
 
 .navigation__logo {
 	margin: 0 0 32px;
 	font-size: 22px;
+	font-weight: 700;
 }
 
 .navigation__menu {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 8px;
 }
 
 .navigation__link {
+	display: block;
 	padding: 12px 14px;
-	border-radius: 8px;
+	border-radius: var(--radius-md);
 	color: #d1d5db;
 	text-decoration: none;
 }
 
 .navigation__link:hover {
-	background-color: #1f2937;
+	background: #1f2937;
 	color: white;
 }
 
 .navigation__link.active {
-	background-color: #2563eb;
+	background: var(--color-primary);
 	color: white;
 }
