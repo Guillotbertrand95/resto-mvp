@@ -9,6 +9,7 @@ function StockMovementForm({ onMovementCreated }) {
 		type: "IN",
 		quantity: "",
 		unitPrice: "",
+		outMode: "quantity",
 	});
 	const [error, setError] = useState("");
 
@@ -43,11 +44,19 @@ function StockMovementForm({ onMovementCreated }) {
 			const movement = {
 				productId: formData.productId,
 				type: formData.type,
-				quantity: Number(formData.quantity),
 			};
 
 			if (formData.type === "IN") {
+				movement.quantity = Number(formData.quantity);
 				movement.unitPrice = Number(formData.unitPrice);
+			}
+
+			if (formData.type === "OUT") {
+				if (formData.outMode === "portion") {
+					movement.portionCount = Number(formData.quantity);
+				} else {
+					movement.quantity = Number(formData.quantity);
+				}
 			}
 
 			await onMovementCreated(movement);
@@ -57,6 +66,7 @@ function StockMovementForm({ onMovementCreated }) {
 				type: "IN",
 				quantity: "",
 				unitPrice: "",
+				outMode: "quantity",
 			});
 		} catch (err) {
 			setError("Impossible de créer le mouvement");
@@ -87,11 +97,26 @@ function StockMovementForm({ onMovementCreated }) {
 				<option value="OUT">Sortie</option>
 			</select>
 
+			{formData.type === "OUT" && (
+				<select
+					name="outMode"
+					value={formData.outMode}
+					onChange={handleChange}
+				>
+					<option value="quantity">Quantité brute</option>
+					<option value="portion">Portions</option>
+				</select>
+			)}
+
 			<input
 				name="quantity"
 				type="number"
 				step="0.01"
-				placeholder="Quantité"
+				placeholder={
+					formData.type === "OUT" && formData.outMode === "portion"
+						? "Nombre de portions"
+						: "Quantité"
+				}
 				value={formData.quantity}
 				onChange={handleChange}
 				required

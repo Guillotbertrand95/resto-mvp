@@ -81,7 +81,7 @@ function Products() {
 
 							<td>{product.unit}</td>
 
-							<td>{product.currentStock}</td>
+							<td>{product.currentStock.toFixed(2)}</td>
 
 							<td>{product.alertThreshold}</td>
 
