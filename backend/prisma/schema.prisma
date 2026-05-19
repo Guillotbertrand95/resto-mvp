@@ -15,6 +15,7 @@ model Product {
   alertThreshold Float    @default(0)
   averagePrice   Float?
   category       String   @default("Non classé")
+  portionQuantity Float?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   
