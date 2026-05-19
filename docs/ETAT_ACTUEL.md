@@ -1,10 +1,17 @@
+---
+
+# 📄 `ETAT_ACTUEL.md`
+
+```md
 # 📄 État actuel du projet
+
+---
 
 ## 🧱 Stack
 
 - Frontend : React + Vite
 - Backend : Node.js / Express
-- Base de données : Supabase (PostgreSQL)
+- Base de données : PostgreSQL (Supabase)
 - ORM : Prisma
 - Langage : JavaScript
 
@@ -12,18 +19,27 @@
 
 ## ✅ Backend
 
-- Architecture modulaire (routes / controllers / services / repositories)
-- Transactions Prisma en place
-- Logique métier centralisée
+Architecture modulaire en place :
+
+- routes
+- controllers
+- services
+- repositories
+
+Transactions Prisma utilisées.
 
 ---
 
 ## 📦 Produits
 
-- Création produit (POST /products)
-- Liste produits (GET /products)
+Fonctionnalités :
 
-Champs :
+- création produit
+- récupération produits
+- catégories
+- portions
+
+Champs actuels :
 
 - name
 - unit
@@ -31,68 +47,89 @@ Champs :
 - alertThreshold
 - averagePrice
 - category
+- portionQuantity
 
 ---
 
 ## 🔄 Mouvements de stock
 
-- Création (POST /stock-movements)
-- Historique (GET /stock-movements)
+Fonctionnalités :
 
-Types :
+- entrée stock (IN)
+- sortie stock (OUT)
+- historique mouvements
 
-- IN (entrée)
-- OUT (sortie)
+Calculs automatiques :
 
----
-
-## 💰 Logique financière
-
-- Prix moyen pondéré
-- Valorisation des mouvements
-- totalValue calculé côté backend
-- précision complète (pas d’arrondi en base)
+- mise à jour stock
+- prix moyen pondéré
+- valorisation mouvements
 
 ---
 
-## 📊 Dashboard
+## 🍽️ Portions
 
-- totalInValue
-- totalOutValue
-- currentStockValue
+Calculs backend disponibles :
 
----
+- availablePortions
+- portionCost
 
-## 🎨 Frontend
+Exemple :
 
-### Pages
+```txt
+6 kg / 0.18 kg = 33 portions
+```
 
-- Dashboard
-- Produits
-- Mouvements
+📊 Dashboard
 
-### Fonctionnalités
+Indicateurs disponibles :
 
-- Affichage KPI
-- Tableau produits
-- Tableau mouvements
-- Création produit
-- Création mouvements (IN / OUT dynamique)
-- Filtre par catégorie
-- Alerte stock faible (visuelle)
+totalInValue
+totalOutValue
+currentStockValue
+🎨 Frontend
 
----
+Pages :
 
-## 🆕 Améliorations récentes
+Dashboard
+Produits
+Mouvements
 
-- Ajout catégorie produit
-- Filtrage dynamique par catégorie
-- Passage quantity en Float (support décimales)
-- Ajout unités dans affichage
-- Badge "Stock bas"
+Fonctionnalités :
 
----
+création produits
+création mouvements
+affichage stock
+filtres catégories
+alertes stock faible
+affichage portions
+🧪 Outils développement
 
-## 🎯 Niveau actuel
+Route dev disponible :
 
-👉 MVP solide et exploitable
+DELETE /dev/reset
+
+Permet :
+
+reset produits
+reset mouvements
+🎯 Niveau actuel
+
+Le MVP possède désormais :
+
+✅ un vrai moteur stock
+
+Le système sait déjà :
+
+valoriser un stock
+gérer les portions
+calculer un coût portion
+recalculer automatiquement les données métier
+🚀 Prochaine grande étape
+
+Introduction de :
+
+recettes
+ventes automatiques
+sorties stock automatiques
+calcul marge
